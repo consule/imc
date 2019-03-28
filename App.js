@@ -21,7 +21,7 @@ export default class App extends Component<Props> {
         'Atenção', 
         'Preencha os campos de Peso e Altura', 
         [
-          {text: 'Vou preencher'}
+          {text: 'Ok'}
         ],
       {cancelable: true})
      } else {
@@ -65,12 +65,19 @@ export default class App extends Component<Props> {
     })
   }
 
+  changeAltura = (altura) => {
+    altura = altura.replace(',' , '.');
+    this.setState({
+      altura: altura
+    })
+  }
+
   render() {
     return (
         <View style={styles.container}>
           <KeyboardAvoidingView behavior="padding">
-          <Text style={styles.resultado}>{this.state.resultado.toFixed(2)}</Text>
-          <Text style={[styles.resultado, {fontSize: 35}]}>{this.state.resultadoText}</Text> 
+          <Text style={styles.resultado}> Seu Imc: { this.state.resultado.toFixed(2)}</Text>
+          <Text style={[styles.resultado, {fontSize: 35}]}> {this.state.resultadoText}</Text> 
           <View style={styles.entradas}> 
             <TextInput 
               placeholder="Peso" 
@@ -82,9 +89,12 @@ export default class App extends Component<Props> {
               placeholder="Altura" 
               keyboardType="numeric"  
               style={styles.input} 
-              onChangeText={(altura)=>{this.setState({altura})}}/>
+              onChangeText={ this.changeAltura }
+              value={ this.state.altura }/>
           </View>
-          <TouchableOpacity style={styles.button} onPress={(this.calcular)}><Text style={styles.buttonText}>C a l c u l a r</Text></TouchableOpacity>
+          <Text style={styles.exemplos}>Exemplo de preenchimento</Text>
+          <Text style={styles.exemplos}>Peso: 85.9  |  Altura: 1.78 </Text>
+          <TouchableOpacity style={styles.button} onPress={(this.calcular)}><Text style={styles.buttonText}>C A L C U L A R</Text></TouchableOpacity>
           </KeyboardAvoidingView>
         </View>
     );
@@ -94,7 +104,7 @@ export default class App extends Component<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#DCDCDD',
   }, 
   entradas: {
     flexDirection: 'row'
@@ -107,20 +117,24 @@ const styles = StyleSheet.create({
     marginTop: 18
   }, 
   button: {
-    backgroundColor:"#89ffa5",
+    backgroundColor:"#1985A1",
     margin: 8
   }, 
   buttonText: {
     alignSelf: 'center', 
     padding: 25, 
     fontSize: 25, 
-    color: '#6dc4a4', 
+    color: '#DCDCDD', 
     fontWeight: 'bold'
   }, 
   resultado: {
     alignSelf: 'center', 
-    color: 'lightgray', 
+    color: '#1985A1', 
     fontSize: 40, 
     padding: 15
+   }, 
+   exemplos : {
+     textAlign: 'center', 
+     color: '#46494C'
    }
 });
