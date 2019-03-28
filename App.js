@@ -84,13 +84,15 @@ export default class App extends Component<Props> {
               keyboardType="numeric" 
               style={styles.input} 
               onChangeText={ this.changePeso }
-              value={ this.state.massa } />
+              value={ this.state.massa } 
+              maxLength={5} />
             <TextInput 
               placeholder="Altura" 
               keyboardType="numeric"  
               style={styles.input} 
               onChangeText={ this.changeAltura }
-              value={ this.state.altura }/>
+              value={ this.state.altura } 
+              maxLength={4} />
           </View>
           <Text style={styles.exemplos}>Exemplo de preenchimento</Text>
           <Text style={styles.exemplos}>Peso: 85.9  |  Altura: 1.78 </Text>
