@@ -1,5 +1,12 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Alert, KeyboardAvoidingView} from 'react-native';
+import { createDrawerNavigator } from 'react-navigation';
+import HomeScreen from './screens/HomeScreen';
+import SettingsScreen from './screens/SettingsScreen';
+
+
+
+
 
 type Props = {};
 export default class App extends Component<Props> {
@@ -94,7 +101,7 @@ export default class App extends Component<Props> {
               value={ this.state.altura } 
               maxLength={4} />
           </View>
-          <Text style={styles.exemplos}>Exemplo de preenchimento</Text>
+          <Text style={styles.exemplos}>Exemplo de preenchimentoooo</Text>
           <Text style={styles.exemplos}>Peso: 85.9  |  Altura: 1.78 </Text>
           <TouchableOpacity style={styles.button} onPress={(this.calcular)}><Text style={styles.buttonText}>C A L C U L A R</Text></TouchableOpacity>
           </KeyboardAvoidingView>
@@ -102,6 +109,19 @@ export default class App extends Component<Props> {
     );
   }
 }
+
+export default class App extends React.Component {
+  render() {
+    return (
+      <AppDrawerNavigator />
+    );
+  }
+}
+
+const AppDrawerNavigator = createDrawerNavigator({
+  Home: HomeScreen, 
+  Settings: SettingsScreen
+})
 
 const styles = StyleSheet.create({
   container: {
